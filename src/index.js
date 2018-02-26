@@ -1,12 +1,16 @@
 import React from 'react'
-import ReactDom from 'react-dom'
+import ReactDOM from 'react-dom'
 
-// create a new decodeURIComponent. This component produces some html 
+// create a new Component. This component produces some html 
 
-const App = function() {
-    return <div>HI</div>;
+// const App = function() {
+//     return <div>HI</div>;
+// }
+
+const App = () => {
+    return <div>HIHI</div>;
 }
 
 // put this componenent into the dom 
 
-React.render(App);
+ReactDOM.render(<App />, document.querySelector('.container'));
