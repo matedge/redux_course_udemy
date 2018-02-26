@@ -1,15 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React from 'react'
+import ReactDom from 'react-dom'
 
-import App from './components/app';
-import reducers from './reducers';
+// create a new decodeURIComponent. This component produces some html 
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const App = function() {
+    return <div>HI</div>;
+}
 
-ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-  , document.querySelector('.container'));
+// put this componenent into the dom 
+
+React.render(App);
