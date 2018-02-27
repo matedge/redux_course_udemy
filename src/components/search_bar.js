@@ -7,9 +7,20 @@ import React, { Component } from "react";
 // };
 
 class SearchBar extends Component {
-    render() {
-        return <input onChange={event => console.log(event.target.value)} />;
+
+    constructor(props) {
+        super(props);  //calls the same function on the parent ie what this extends from (component)
+
+        this.state = { term: ''};
+
     }
+
+    render() {
+        return(
+            <div>
+                <input onChange={event => this.setState({ term: event.target.value })} />
+            </div>
+        )}
 
 }
 
