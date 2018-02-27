@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import YTSearch from 'youtube-api-search'
 import SearchBar from './components/search_bar'
-
 const API_KEY = "AIzaSyCIWfq5tAtn1nPCaXAkjg2a0uOPUgeWfn4";
 
 // create a new Component. This component produces some html 
@@ -9,13 +9,33 @@ const API_KEY = "AIzaSyCIWfq5tAtn1nPCaXAkjg2a0uOPUgeWfn4";
 // const App = function() {
 //     return <div>HI</div>;
 // }
+// FUNCTIONAL COMPONENT APP CANNOT KEEP TRACK OF STATE
+// const App = () => {
+//     return (
+//      <div>
+//         <SearchBar />
+//      </div>    
+//     );
+// }
 
-const App = () => {
-    return (
-     <div>
-        <SearchBar />
-     </div>    
-    );
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { videos: [] };
+
+        YTSearch({ key: API_KEY, term: "surfboards" }, (data) => {
+          this.setState({videos: data}); // can use just {videos} if we name our data arg as video. es6
+        });
+    }
+
+    render(){
+        return (
+            <div>
+                <SearchBar />
+            </div>
+        );
+    }
 }
 
 // put this componenent into the dom 
