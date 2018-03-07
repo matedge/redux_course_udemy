@@ -24,19 +24,31 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { videos: [] };
+        this.state = { 
+            videos: [],
+            selectedVideo: null
+        };
 
-        YTSearch({ key: API_KEY, term: "surfboards" }, (data) => {
-          this.setState({videos: data}); // can use just {videos} if we name our data arg as video. es6
+        this.videoSearch("surfboards");  
+    }
+
+    videoSearch(term) {
+        YTSearch({ key: API_KEY, term: "jerry of the day" }, data => {
+          this.setState({ 
+              videos: data, 
+              selectedVideo: data[0] 
+            }); // can use just {videos} if we name our data arg as video. es6
         });
     }
 
     render(){
         return (
             <div>
-                <SearchBar />
-                <VideoDetail video={this.state.videos[0]}/>
-                <VideoList videos={this.state.videos} />
+                <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+                <VideoDetail video={this.state.selectedVideo}/>
+                <VideoList 
+                    onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+                    videos={this.state.videos} />
             </div>
         );
     }
